@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 全局样式 */
+    body {
+      font-family: '微软雅黑', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      transition: background 0.5s ease;
+    }
+
+    /* 卡片样式 */
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+      width: 300px;
+    }
+
+    /* 计数文本样式 */
+    #counter {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* 按钮样式 */
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    /* 按钮悬停效果 */
+    .button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- 半透明圆角卡片容器 -->
+  <div class="card">
+    
+    <!-- 显示计数的段落 -->
+    <p id="counter">计数：0</p>
+    
+    <!-- 计数按钮 -->
+    <div class="button" id="count-btn">计数</div>
+    
+    <!-- 背景变化按钮 -->
+    <div class="button" id="bg-btn">改变背景</div>
+  </div>
+
+  <script>
+    // 获取计数元素和按钮元素
+    const counterElement = document.getElementById("counter");
+    const countBtn = document.getElementById("count-btn");
+    const bgBtn = document.getElementById("bg-btn");
+
+    // 初始化计数器
+    let count = 0;
+
+    // 计数按钮点击事件
+    countBtn.addEventListener("click", function() {
+      count++;  // 每次点击计数递增
+      counterElement.textContent = `计数：${count}`;
+    });
+
+    // 背景变化按钮点击事件
+    bgBtn.addEventListener("click", function() {
+      // 生成随机渐变色
+      const color1 = getRandomColor();
+      const color2 = getRandomColor();
+      document.body.style.background = `linear-gradient(45deg, ${color1}, ${color2})`;
+    });
+
+    // 随机生成颜色的函数
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>
